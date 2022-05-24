@@ -1,12 +1,11 @@
-import tkinter as tk
+from tkinter import *
 
-window = tk.Tk()
-window.title("Hello wold")
-window.geometry("300x300")
+root = Tk()
 
-hello = tk.Label(text="Hello world!")
-hello.pack()
-button = tk.Button(text="Click me!")
-button.pack()
+canvas = Canvas(root, width = 700, height = 700)
+canvas.pack()
 
-tk.mainloop()
+img = PhotoImage(file="images/home_screen.png") 
+canvas.create_image(0,0, anchor=NW, image=img) 
+
+mainloop() 
