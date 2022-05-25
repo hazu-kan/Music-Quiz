@@ -1,11 +1,22 @@
+# Import required libraries
 from tkinter import *
+from PIL import ImageTk, Image
 
-root = Tk()
+# Create an instance of tkinter window
+win = Tk()
 
-canvas = Canvas(root, width = 700, height = 700)
-canvas.pack()
+# Define the geometry of the window
+win.geometry("1080x600")
 
-img = PhotoImage(file="images/home_screen.png") 
-canvas.create_image(0,0, anchor=NW, image=img) 
+frame = Frame(win, width=1080, height=600)
+frame.pack()
+frame.place(anchor='center', relx=0.5, rely=0.5)
 
-mainloop() 
+# Create an object of tkinter ImageTk
+img = ImageTk.PhotoImage(Image.open("images/home_screen.png"))
+
+# Create a Label Widget to display the text or Image
+label = Label(frame, image = img)
+label.pack()
+
+win.mainloop()
