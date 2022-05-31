@@ -11,16 +11,16 @@ class Quiz:
         self.heading_label.grid(row=0) 
 
         #label for username
-        self.user_label=Label(parent, text="Please enter your username below: ", font=("Tw Cen MT","16"),bg=background_color)
+        self.user_label=Label(parent, text="", font=("Tw Cen MT","16"),bg=background_color)
         self.user_label.place(x=50,y=230)
         
         #entry box
         self.entry_box=Entry(parent)
-        self.entry_box.grid(row=2,padx=20, pady=20)
+        self.entry_box.place(x=225,y=315) 
         
         #continue button
         self.continue_button = Button(parent, text="Continue", font=("Helvetica", "35", "bold"), bg="light blue", command=self.name_collection)
-        self.continue_button.place(x=209,y=375)       
+        self.continue_button.place(x=208,y=365)       
        
 
     def name_collection(self):
