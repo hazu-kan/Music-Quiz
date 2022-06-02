@@ -1,5 +1,8 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import random 
+import os
+from tkinter import messagebox
 names = []
 
 class Quiz:
@@ -25,7 +28,14 @@ class Quiz:
 
     def name_collection(self):
         name=self.entry_box.get()
-        names.append(name) #add name to names list declared at the beginning
+        names.append(name)
+        
+       
+      
+      
+      
+         
+      #add name to names list declared at the beginning
         #self.quiz_frame.destroy() #Destroy name frame then open the quiz runner
       
            
