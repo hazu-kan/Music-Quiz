@@ -20,13 +20,13 @@ questions_answers = {
   9: ["How many memebers does BTS have?", '12', '7', '15','78', '7',2],
 }
 
-def randomiser(): 
+def scrambler(): 
    global qnum
    qnum = random.randint(1,9)
    if qnum not in asked:
       asked.append(qnum)
    elif qnum in asked:
-      randomiser()
+      scrambler()
 
 
 class UserEnterQuiz:
@@ -58,6 +58,53 @@ class UserEnterQuiz:
       
       #add name to names list declared at the beginning
         #self.quiz_frame.destroy() #Destroy name frame then open the quiz runner
+class Questions:  
+  def __init__(self, parent):
+    scrambler()
+
+    self.title_label = Label (parent, text= "The Music Quiz", font=("Courier", "18", "bold"))
+    self.title_label.place (x=90, y=75)
+    
+    self.question_label = Label (parent, text = questions_answers[qnum][0], font=("Tw Cen MT", "9", "bold"))
+    self.question_label.place(x=12,y=120)
+
+    self.var1=IntVar()
+ 
+    self.rb1= Radiobutton(parent, text=questions_answers[qnum][1], font=("Courier","11"),value=1,padx=10,pady=10,
+                variable=self.var1)
+    self.rb1.place(x=300,y=260)
+     
+    self.rb2= Radiobutton(parent, text=questions_answers[qnum][2], font=("Courier","11"),value=2,padx=10,pady=10,
+                variable=self.var1)
+    self.rb2.place(x=300,y=310)
+
+    self.rb3= Radiobutton(parent, text=questions_answers[qnum][3], font=("Courier","11"), value=3,padx=10,pady=10,
+                variable=self.var1)
+    self.rb3.place(x=300,y=360)
+
+    self.rb4= Radiobutton(parent, text=questions_answers[qnum][4], font=("Courier","11"), value=4,padx=10,pady=10,
+                variable=self.var1)
+    self.rb4.place(x=300,y=410)
+
+    self.confirm_button = Button(parent, text="Confirm", font=("Courier","11"), bg="light blue", command=self.test_progress)
+    self.confirm_button.place(x=450,y=300)   
+      
+    self.score_label=Label(parent, text="Score", font=("Helvetica", "17"))
+    self.score_label.place(x=300,y=10)
+
+    self.answer_label=Label(parent, font=("Courier", "14"))
+    self.answer_label.place(x=300,y=110)
+
+
+  def questions_setup(self):
+    randomiser()
+    self.var1.set(0)
+    self.question_label.config(text=questions_answers[qnum][0])
+    self.rb1.config(text=questions_answers[qnum][1])
+    self.rb2.config(text=questions_answers[qnum][2])
+    self.rb3.config(text=questions_answers[qnum][3])
+    self.rb4.config(text=questions_answers[qnum][4])    
+
       
            
 
