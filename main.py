@@ -20,6 +20,15 @@ questions_answers = {
   9: ["How many memebers does BTS have?", '12', '7', '15','78', '7',2],
 }
 
+def randomiser(): 
+   global qnum
+   qnum = random.randint(1,9)
+   if qnum not in asked:
+      asked.append(qnum)
+   elif qnum in asked:
+      randomiser()
+
+
 class UserEnterQuiz:
   def __init__(self, parent):
       self.heading_label = Label (parent, text = "", font=("", "1", "bold"))
