@@ -53,7 +53,7 @@ class UserEnterQuiz:
     self.user_label.destroy()
     self.entry_box.destroy()
     self.play_button.destroy()
-    UserEnterQuiz(root)
+    Questions(root)
     
       
       #add name to names list declared at the beginning
@@ -97,14 +97,48 @@ class Questions:
 
 
   def questions_setup(self):
-    randomiser()
+    scrambler()
     self.var1.set(0)
     self.question_label.config(text=questions_answers[qnum][0])
     self.rb1.config(text=questions_answers[qnum][1])
     self.rb2.config(text=questions_answers[qnum][2])
     self.rb3.config(text=questions_answers[qnum][3])
     self.rb4.config(text=questions_answers[qnum][4])    
-
+    
+  def test_progress(self):
+    global score 
+    scr_label = self.score_label 
+    score_label = self.answer_label
+    choice = self.var1.get() 
+    if len(asked)>6: #to determine if its the last question and just end the quiz after
+      if choice==questions_answers[qnum][6]: 
+        score +=1 
+        scr_label.configure(text=score) 
+        self.confirm_button.config(text="Confirm") 
+        score_label.configure(text="")
+      else:
+        score+=0 
+        score_label.configure(text=" NO!...The correct answer is"+ questions_answers[qnum][5]) 
+        self.confirm_button.config(text="Confirm")
+    else:
+      if choice==0:#if the user does not select an  option
+        self.answer_label.config(text="Please select a given option.") #error message 
+        choice=self.var1.get() 
+      else: #if the choice is made
+        if choice==questions_answers[qnum][6]: #if choice made is correct
+          score+=1 #add one to score
+          scr_label.configure(text=score)
+          self.confirm_button.configure(text="Confirm")
+          score_label.configure(text="")
+          self.questions_setup() #run method to next question
+        else: #if choice is incorrect
+          score+=0
+          score_label.configure(text="The correct answer was " + questions_answers[qnum][5])
+          self.confirm_button.configure(text="Confirm")
+          self.questions_setup() #move to next question
+          
+#starting point 
+scrambler()
       
            
 
