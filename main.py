@@ -18,11 +18,13 @@ questions_answers = {
   7: ["What is Drakes most streamed song to date?", 'Gods Plan', 'Hotline Bling', 'One Dance', 'In my Feelings', 'One Dance',3],
   8: ["What year was YMCA realeased?", '1956', '1978', '1996', '1986', '1978',2],
   9: ["How many memebers does BTS have?", '12', '7', '15','78', '7',2],
+  10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1],
+   
 }
 
 def scrambler(): 
    global qnum
-   qnum = random.randint(1,9)
+   qnum = random.randint(1,9) 
    if qnum not in asked:
       asked.append(qnum)
    elif qnum in asked:
@@ -31,11 +33,11 @@ def scrambler():
 
 class UserEnterQuiz:
   def __init__(self, parent):
-      self.heading_label = Label (parent, text = "", font=("", "1", "bold"))
-      self.heading_label.place(x=50,y=230)
+      self.heading_label = Label (parent, text = "THE MUSIZ QUIZ", font=("Helvetica", "35", "bold"))
+      self.heading_label.place(x=175,y=150)
       
         #label for username
-      self.user_label=Label(parent, text="", font=("","1" ))
+      self.user_label=Label(parent, text="Enter Username Here:", font=("Helvetica","15" ))
       self.user_label.place(x=45,y=230)
         
         #entry box
@@ -44,9 +46,15 @@ class UserEnterQuiz:
         
         #continue button
       self.play_button = Button(parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="light blue", command=self.name_collection)  
-      self.play_button.place(x=208,y=365)              
+      self.play_button.place(x=208,y=365)
+    
+      
        
-  def name_collection(self):
+  
+    
+
+
+  def name_collection(self):  
     name=self.entry_box.get()
     names.append(name) #add name to names list declared at the beginning
     self.heading_label.destroy()
@@ -154,7 +162,7 @@ if __name__ == "__main__":
     root = Tk()
     root.title("The Music Quiz") 
     root.geometry("700x450")
-    bg_image = Image.open("images/home_screen.png") #need to use Image if need to resize 
+    bg_image = Image.open("images/home_screen1.PNG") #need to use Image if need to resize 
     bg_image = bg_image.resize((700, 450), Image.ANTIALIAS)
     bg_image = ImageTk.PhotoImage(bg_image) 
           #label for image
