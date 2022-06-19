@@ -103,6 +103,14 @@ class Questions:
     self.answer_label=Label(parent, font=("Courier", "14"))
     self.answer_label.place(x=300,y=110)
 
+    self.quit= Button(parent, text="Quit", font=("Courier", "15"), fg="white",  command=self.endScreen)
+    self.quit.place(x=20,y=45)
+
+
+  def endScreen(self):   
+   root.withdraw()
+   End(root)
+
 
   def questions_setup(self):
     scrambler()
@@ -144,11 +152,35 @@ class Questions:
           score_label.configure(text="The correct answer was " + questions_answers[qnum][5])
           self.confirm_button.configure(text="Confirm")
           self.questions_setup() #move to next question
+
+   
+
+
           
 #starting point 
 scrambler()
-      
-           
+
+
+
+
+class End:
+  def __init__(self):
+    background="light blue"
+    self.end_box= Toplevel(root)
+    self.end_box.title("End Box")
+
+    self.end_frame = Frame (self.end_box, width=1000, height=1000, bg=background)
+    end_heading.grid(row=0)
+
+    end_heading = Label (self.end_frame, text='Well Done', font=('Tw Cen MT', 22 , 'bold'), bg=background, pady=15)
+    end_heading.grid(row=0)
+
+    exit_button = Button (self.end_frame, text="Exit", width=10, bg="Red", font=('Tw Cen MT', 12 , 'bold'), command=self.close_end )
+    exit_button.grid_(row=4, pady=20)
+
+  def close_end(self):
+    self.end_box.destroy()
+    root.withdraw()
 
 
 
