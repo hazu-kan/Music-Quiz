@@ -107,9 +107,7 @@ class Questions:
     self.quit.place(x=20,y=45)
 
 
-  def endScreen(self):   
-   root.withdraw()
-   End(root)
+  
 
 
   def questions_setup(self):
@@ -152,7 +150,45 @@ class Questions:
           score_label.configure(text="The correct answer was " + questions_answers[qnum][5])
           self.confirm_button.configure(text="Confirm")
           self.questions_setup() #move to next question
-
+          
+  def endScreen(self):   
+    self.title_label.destroy()
+    self.question_label.destroy()
+    self.rb1.destroy()
+    self.rb2.destroy()
+    self.rb3.destroy()
+    self.rb4.destroy()
+    self.confirm_button.destroy()
+    self.score_label.destroy()
+    self.answer_label.destroy()
+    self.quit.destroy()
+    name=names[0]
+    file=open("board.txt","a") #opens the highscores file
+    
+    if name == "admin_reset": 
+      file=open("board.txt", "w")
+    else:
+      file.write(str(score))  #turns the score into a string
+      file.write(" - ") #writes into the text file
+      file.write(name+ "\n") #writes the name into the text file and then goes to a new line
+      file.close() #closes the file
+    inputFile= open("board.txt", "r") #opens the highscores file in read mode
+    lineList = inputFile.readlines() #line list equals the each line in the list
+    lineList.sort()
+    top=[]
+    top5=(lineList[-5:])
+    for line in top5:
+      point=line.split(" - ")
+      top.append((int(point[0]), point[1]))
+    file.close() 
+    top.sort()
+    top.reverse()
+    return_string = ""
+    for i in range(len(top)):
+      return_string +="{} - {}\n".format(top[i][0], top[i][0])
+    print(return_string) #for testing to show on the console
+    open_endscrn=leaderboard(root)
+    open_endscrn.exit_button.config(text=return_string)   
    
 
 
@@ -163,20 +199,20 @@ scrambler()
 
 
 
-class End:
-  def __init__(self):
+class leaderboard:
+  def __init__(self, parent):
     background="light blue"
     self.end_box= Toplevel(root)
     self.end_box.title("End Box")
 
     self.end_frame = Frame (self.end_box, width=1000, height=1000, bg=background)
-    end_heading.grid(row=0)
+    self.end_frame.grid(row=0)
 
-    end_heading = Label (self.end_frame, text='Well Done', font=('Tw Cen MT', 22 , 'bold'), bg=background, pady=15)
-    end_heading.grid(row=0)
+    self.end_heading = Label (self.end_frame, text='Well Done', font=('Tw Cen MT', 22 , 'bold'), bg=background, pady=15)
+    self.end_heading.grid(row=0)
 
-    exit_button = Button (self.end_frame, text="Exit", width=10, bg="Red", font=('Tw Cen MT', 12 , 'bold'), command=self.close_end )
-    exit_button.grid_(row=4, pady=20)
+    self.exit_button = Button (self.end_frame, text="Exit", width=10, bg="Red", font=('Tw Cen MT', 12 , 'bold'), command=self.close_end )
+    self.exit_button.grid(row=4, pady=20)
 
   def close_end(self):
     self.end_box.destroy()
