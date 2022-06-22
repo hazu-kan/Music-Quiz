@@ -4,24 +4,10 @@ import random
 from tkinter import messagebox
 import math
 names = []
-global questions_answers
 asked = []
 score=0
 
-questions_answers = {
-  1: ["How many studio albums have the k-pop group blackpink  released?", '4', '8', '2', '732', '2', 3],
-  2: ["What is the Weeknd 4rd album?", 'Kissland', 'My Dear mEelonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4],
-  3: ["Who starrred in the music video Out of Time by the Weeknd", 'HoYeon Jung', 'Lee Jung-jae', 'Jeffrey Su', 'Anupam Tripathi', 'HoYeon Jung',1],
-  4: ["How many strings on a violin?", '3', '-17', '0', '4', '4',4],
-  5: ["Which show made One Direction", 'The Voice ', 'X Factor', 'Americas Got Talents', 'American Idol', 'X Factor',2],
-  6: ["When did Beyonce debut?", '1997', '2001', '1995', '2015', '1995',3],
-  7: ["What is Drakes most streamed song to date?", 'Gods Plan', 'Hotline Bling', 'One Dance', 'In my Feelings', 'One Dance',3],
-  8: ["What year was YMCA realeased?", '1956', '1978', '1996', '1986', '1978',2],
-  9: ["How many memebers does BTS have?", '12', '7', '15','78', '7',2],
-  10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1],
-  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '21',1],
-   
-}
+
 
 def scrambler(): 
    global qnum
@@ -46,11 +32,17 @@ class UserEnterQuiz:
       self.entry_box.place(x=175,y=305) 
         
         #continue button
-      self.play_button = Button(parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="light blue", command=self.name_collection)  
+      self.play_button = Button(parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="light blue", command=self.name_check)  
       self.play_button.place(x=208,y=365)
-    
+
       
-       
+  def name_check(self):
+    entry = self.entry_box.get()
+    if entry == "":
+       messagebox.showerror('error', "please enter your username")
+    else:
+      self.name_collection()
+    
   
     
 
@@ -63,7 +55,9 @@ class UserEnterQuiz:
     self.entry_box.destroy()
     self.play_button.destroy()
     Questions(root)
-    
+
+
+
       
       #add name to names list declared at the beginning
         #self.quiz_frame.destroy() #Destroy name frame then open the quiz runner
@@ -71,27 +65,44 @@ class Questions:
   def __init__(self, parent):
     scrambler()
 
+
+
+    self.questions_answers =  {
+  1: ["How many studio albums have the k-pop group blackpink  released?", '4', '8', '2', '732', '2', 3],
+  2: ["What is the Weeknd 4rd album?", 'Kissland', 'My Dear mEelonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4],
+  3: ["Who starrred in the music video Out of Time by the Weeknd", 'HoYeon Jung', 'Lee Jung-jae', 'Jeffrey Su', 'Anupam Tripathi', 'HoYeon Jung',1],
+  4: ["How many strings on a violin?", '3', '-17', '0', '4', '4',4],
+  5: ["Which show made One Direction", 'The Voice ', 'X Factor', 'Americas Got Talents', 'American Idol', 'X Factor',2],
+  6: ["When did Beyonce debut?", '1997', '2001', '1995', '2015', '1995',3],
+  7: ["What is Drakes most streamed song to date?", 'Gods Plan', 'Hotline Bling', 'One Dance', 'In my Feelings', 'One Dance',3],
+  8: ["What year was YMCA realeased?", '1956', '1978', '1996', '1986', '1978',2],
+  9: ["How many memebers does BTS have?", '12', '7', '15','78', '7',2],
+  10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1],
+  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '21',1],
+   
+}
+
     self.title_label = Label (parent, text= "The Music Quiz", font=("Courier", "18", "bold"))
     self.title_label.place (x=90, y=75)
     
-    self.question_label = Label (parent, text = questions_answers[qnum][0], font=("Tw Cen MT", "9", "bold"))
+    self.question_label = Label (parent, text = self.questions_answers[qnum][0], font=("Tw Cen MT", "9", "bold"))
     self.question_label.place(x=12,y=120)
 
     self.var1=IntVar()
  
-    self.rb1= Radiobutton(parent, text=questions_answers[qnum][1], font=("Courier","11"),value=1,padx=10,pady=10,
+    self.rb1= Radiobutton(parent, text=self.questions_answers[qnum][1], font=("Courier","11"),value=1,padx=10,pady=10,
                 variable=self.var1)
     self.rb1.place(x=300,y=260)
      
-    self.rb2= Radiobutton(parent, text=questions_answers[qnum][2], font=("Courier","11"),value=2,padx=10,pady=10,
+    self.rb2= Radiobutton(parent, text=self.questions_answers[qnum][2], font=("Courier","11"),value=2,padx=10,pady=10,
                 variable=self.var1)
     self.rb2.place(x=300,y=310)
 
-    self.rb3= Radiobutton(parent, text=questions_answers[qnum][3], font=("Courier","11"), value=3,padx=10,pady=10,
+    self.rb3= Radiobutton(parent, text=self.questions_answers[qnum][3], font=("Courier","11"), value=3,padx=10,pady=10,
                 variable=self.var1)
     self.rb3.place(x=300,y=360)
 
-    self.rb4= Radiobutton(parent, text=questions_answers[qnum][4], font=("Courier","11"), value=4,padx=10,pady=10,
+    self.rb4= Radiobutton(parent, text=self.questions_answers[qnum][4], font=("Courier","11"), value=4,padx=10,pady=10,
                 variable=self.var1)
     self.rb4.place(x=300,y=410)
 
@@ -107,6 +118,9 @@ class Questions:
     self.quit= Button(parent, text="Quit", font=("Courier", "15"), fg="white",  command=self.endScreen)
     self.quit.place(x=20,y=45)
 
+  
+    
+
 
   
 
@@ -114,11 +128,11 @@ class Questions:
   def questions_setup(self):
     scrambler()
     self.var1.set(0)
-    self.question_label.config(text=questions_answers[qnum][0])
-    self.rb1.config(text=questions_answers[qnum][1])
-    self.rb2.config(text=questions_answers[qnum][2])
-    self.rb3.config(text=questions_answers[qnum][3])
-    self.rb4.config(text=questions_answers[qnum][4])    
+    self.question_label.config(text=self.questions_answers[qnum][0])
+    self.rb1.config(text=self.questions_answers[qnum][1])
+    self.rb2.config(text=self.questions_answers[qnum][2])
+    self.rb3.config(text=self.questions_answers[qnum][3])
+    self.rb4.config(text=self.questions_answers[qnum][4])    
     
   def test_progress(self):
     global score 
@@ -126,7 +140,7 @@ class Questions:
     score_label = self.answer_label
     choice = self.var1.get() 
     if len(asked)>10: #to determine if its the last question and just end the quiz after
-      if choice==questions_answers[qnum][6]: 
+      if choice==self.questions_answers[qnum][6]: 
         score +=1 
         scr_label.configure(text=score) 
         self.confirm_button.config(text="Confirm") 
@@ -134,7 +148,7 @@ class Questions:
         self.endScreen()
       else:
         score+=0 
-        score_label.configure(text=" NO!...The correct answer is"+ questions_answers[qnum][5]) 
+        score_label.configure(text=" NO!...The correct answer is"+ self.questions_answers[qnum][5]) 
         self.confirm_button.config(text="Confirm")
         self.endScreen()
     else:
@@ -142,7 +156,7 @@ class Questions:
         self.answer_label.config(text="Please select a given option.") #error message 
         choice=self.var1.get() 
       else: #if the choice is made
-        if choice==questions_answers[qnum][6]: #if choice made is correct
+        if choice==self.questions_answers[qnum][6]: #if choice made is correct
           score+=1 #add one to score
           scr_label.configure(text=score)
           self.confirm_button.configure(text="Confirm")
@@ -150,7 +164,7 @@ class Questions:
           self.questions_setup() #run method to next question
         else: #if choice is incorrect
           score+=0
-          score_label.configure(text="The correct answer was " + questions_answers[qnum][5])
+          score_label.configure(text="The correct answer was " + self.questions_answers[qnum][5])
           self.confirm_button.configure(text="Confirm")
           self.questions_setup() #move to next question
           
