@@ -3,6 +3,8 @@ from PIL import Image, ImageTk
 import random 
 from tkinter import messagebox
 import math
+import sys
+import os
 names = []
 asked = []
 score=0
@@ -24,15 +26,15 @@ class UserEnterQuiz:
       self.heading_label.place(x=150,y=150)
       
         #label for username
-      self.user_label=Label(parent, text="Enter Username Here:", font=("Helvetica","15" ))
+      self.user_label=Label (parent, text="Enter Username Here:", font=("Helvetica","15" ))
       self.user_label.place(x=200,y=270)
         
         #entry box
-      self.entry_box=Entry(parent, font=("Times 20 italic bold","20"))
+      self.entry_box=Entry (parent, font=("Times 20 italic bold","20"))
       self.entry_box.place(x=175,y=305) 
         
         #continue button
-      self.play_button = Button(parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="light blue", command=self.name_check)  
+      self.play_button = Button (parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="light blue", command=self.name_check)  
       self.play_button.place(x=208,y=365)
 
       
@@ -69,16 +71,16 @@ class Questions:
 
     self.questions_answers =  {
   1: ["How many studio albums have the k-pop group blackpink  released?", '4', '8', '2', '732', '2', 3],
-  2: ["What is the Weeknd 4rd album?", 'Kissland', 'My Dear mEelonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4],
-  3: ["Who starrred in the music video Out of Time by the Weeknd", 'HoYeon Jung', 'Lee Jung-jae', 'Jeffrey Su', 'Anupam Tripathi', 'HoYeon Jung',1],
-  4: ["How many strings on a violin?", '3', '-17', '0', '4', '4',4],
-  5: ["Which show made One Direction", 'The Voice ', 'X Factor', 'Americas Got Talents', 'American Idol', 'X Factor',2],
-  6: ["When did Beyonce debut?", '1997', '2001', '1995', '2015', '1995',3],
-  7: ["What is Drakes most streamed song to date?", 'Gods Plan', 'Hotline Bling', 'One Dance', 'In my Feelings', 'One Dance',3],
+  2: ["What is the Weeknd 4rd album?", 'Kissland', 'My Dear mEelonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4, 'images/home_screen.png'],
+  3: ["Who starrred in the music video Out of Time by the Weeknd", 'HoYeon Jung', 'Lee Jung-jae', 'Jeffrey Su', 'Anupam Tripathi', 'HoYeon Jung',1, 'images/home_screen.png'],
+  4: ["How many strings on a violin?", '3', '-17', '0', '4', '4',4, 'images/home_screen.png'],
+  5: ["Which show made One Direction", 'The Voice ', 'X Factor', 'Americas Got Talents', 'American Idol', 'X Factor',2, 'images/home_screen.png'],
+  6: ["When did Beyonce debut?", '1997', '2001', '1995', '2015', '1995',3, 'images/home_screen.png'],
+  7: ["What is Drakes most streamed song to date?", 'Gods Plan', 'Hotline Bling', 'One Dance', 'In my Feelings', 'One Dance',3, 'images/home_screen.png'],
   8: ["What year was YMCA realeased?", '1956', '1978', '1996', '1986', '1978',2],
-  9: ["How many memebers does BTS have?", '12', '7', '15','78', '7',2],
-  10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1],
-  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '21',1],
+  9: ["How many memebers does BTS have?", '12', '7', '15','78', '7',2, 'images/home_screen.png'],
+  10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1, 'images/home_screen.png'],
+  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '21',1, 'images/home_screen.png'],
    
 }
 
@@ -86,37 +88,45 @@ class Questions:
     self.title_label.place (x=90, y=75)
     
     self.question_label = Label (parent, text = self.questions_answers[qnum][0], font=("Tw Cen MT", "9", "bold"))
-    self.question_label.place(x=12,y=120)
+    self.question_label.place(x=25,y=150)
 
     self.var1=IntVar()
  
-    self.rb1= Radiobutton(parent, text=self.questions_answers[qnum][1], font=("Courier","11"),value=1,padx=10,pady=10,
+    self.rb1= Radiobutton(parent, text=self.questions_answers[qnum][1], font=("Courier","9"),value=1,padx=10,pady=10,
                 variable=self.var1)
-    self.rb1.place(x=300,y=260)
+    self.rb1.place(x=450,y=160)
      
-    self.rb2= Radiobutton(parent, text=self.questions_answers[qnum][2], font=("Courier","11"),value=2,padx=10,pady=10,
+    self.rb2= Radiobutton(parent, text=self.questions_answers[qnum][2], font=("Courier","9"),value=2,padx=10,pady=10,
                 variable=self.var1)
-    self.rb2.place(x=300,y=310)
+    self.rb2.place(x=450,y=210)
 
-    self.rb3= Radiobutton(parent, text=self.questions_answers[qnum][3], font=("Courier","11"), value=3,padx=10,pady=10,
+    self.rb3= Radiobutton(parent, text=self.questions_answers[qnum][3], font=("Courier","9"), value=3,padx=10,pady=10,
                 variable=self.var1)
-    self.rb3.place(x=300,y=360)
+    self.rb3.place(x=450,y=260)
 
-    self.rb4= Radiobutton(parent, text=self.questions_answers[qnum][4], font=("Courier","11"), value=4,padx=10,pady=10,
+    self.rb4= Radiobutton(parent, text=self.questions_answers[qnum][4], font=("Courier","9"), value=4,padx=10,pady=10,
                 variable=self.var1)
-    self.rb4.place(x=300,y=410)
+    self.rb4.place(x=450,y=310)
 
     self.confirm_button = Button(parent, text="Confirm", font=("Courier","11"), bg="light blue", command=self.test_progress)
-    self.confirm_button.place(x=450,y=300)   
+    self.confirm_button.place(x=500,y=410)   
       
-    self.score_label=Label(parent, text="Score", font=("Helvetica", "17"))
+    self.score_label=Label(parent, text="Score", font=("Helvetica", "9"))
     self.score_label.place(x=300,y=10)
 
-    self.answer_label=Label(parent, font=("Courier", "14"))
-    self.answer_label.place(x=300,y=110)
+    self.answer_label=Label(parent, font=("Courier", "9"))
+    self.answer_label.place(x=100,y=400)
 
-    self.quit= Button(parent, text="Quit", font=("Courier", "15"), fg="white",  command=self.endScreen)
-    self.quit.place(x=20,y=45)
+    self.quit= Button(parent, text="Quit", font=("Courier", "15"), fg="white", bg="red",   command=self.endScreen)
+    self.quit.place(x=20,y=410)
+
+    self.photo = PhotoImage(file=self.questions_answers[qnum][5])
+
+    
+
+    self.image= Button(parent, text="", font=("Courier", "15"), fg="white", image = self.photo  )
+    self.image.place(x=20,y=300)
+
 
   
     
@@ -132,7 +142,8 @@ class Questions:
     self.rb1.config(text=self.questions_answers[qnum][1])
     self.rb2.config(text=self.questions_answers[qnum][2])
     self.rb3.config(text=self.questions_answers[qnum][3])
-    self.rb4.config(text=self.questions_answers[qnum][4])    
+    self.rb4.config(text=self.questions_answers[qnum][4]) 
+    self.photo.config(text=self.questions_answers[qnum][5])
     
   def test_progress(self):
     global score 
@@ -179,6 +190,7 @@ class Questions:
     self.rb2.destroy()
     self.rb3.destroy()
     self.rb4.destroy()
+    self.image.destroy()
     name=names[0]
     file=open("board.txt","a") #opens the highscores file
     
@@ -220,7 +232,7 @@ class leaderboard:
   def __init__(self, parent):
     background="light blue"
     self.end_box= Toplevel(root)
-    self.end_box.title("End Box")
+    self.end_box.title("leaderBoared")
 
     self.end_frame = Frame (self.end_box, width=1000, height=1000, bg=background)
     self.end_frame.grid(row=0)
@@ -239,9 +251,8 @@ class leaderboard:
     root.withdraw()
 
   def restart(self):
-    UserEnterQuiz(root)
-    self.end_box.destroy()
-
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
 
 
 
