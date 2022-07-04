@@ -70,23 +70,23 @@ class Questions:
 
 
     self.questions_answers =  {
-  1: ["How many studio albums have the k-pop group blackpink  released?", '4', '8', '2', '732', '2', 3, "BLK.png" ],
-  2: ["What is the Weeknd 4rd album?", 'Kissland', 'My Dear melonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4, "BLK.png" ],
-  3: ["Who starrred in the music video Out of Time by the Weeknd", 'HoYeon Jung', 'Lee Jung-jae', 'Jeffrey Su', 'Anupam Tripathi', 'HoYeon Jung',1, "BLK.png" ],
-  4: ["How many strings on a violin?", '3', '-17', '0', '4', '4',4, "BLK.png" ],
-  5: ["Which show made One Direction", 'The Voice ', 'X Factor', 'Americas Got Talents', 'American Idol', 'X Factor',2, "BLK.png" ],
-  6: ["When did Beyonce debut?", '1997', '2001', '1995', '2015', '1995',3, "BLK.png" ],
-  7: ["What is Drakes most streamed song to date?", 'Gods Plan', 'Hotline Bling', 'One Dance', 'In my Feelings', 'One Dance',3, "BLK.png" ],
-  8: ["What year was YMCA realeased?", '1956', '1978', '1996', '1986', '1978',2, "BLK.png" ],
-  9: ["How many members does BTS have?", '12', '7', '15','78', '7',2, "BLK.png" ],
-  10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1, "BLK.png" ],
-  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '21',1, "BLK.png" ],
+  1: ["How many studio albums have the k-pop group blackpink  released?", '4', '8', '2', '732', '2', 3, "images/BLK.png" ],
+  2: ["What is the Weeknd's 4rd album?", 'Kissland', 'My Dear melonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4, "images/we.png" ],
+  3: ["Who starrred in the music video Out of Time by the Weeknd?", 'HoYeon Jung', 'Lee Jung-jae', 'Jeffrey Su', 'Anupam Tripathi', 'HoYeon Jung',1, "images/out.png" ],
+  4: ["How many strings on a violin?", '3', '-17', '0', '4', '4',4, "images/v.png" ],
+  5: ["Which show made One Direction?", 'The Voice ', 'X Factor', 'Americas Got Talents', 'American Idol', 'X Factor',2, "images/od.png" ],
+  6: ["When did Beyonce debut?", '1997', '2001', '1995', '2015', '1995',3, "images/be.png" ],
+  7: ["What is Drakes most streamed song to date?", 'Gods Plan', 'Hotline Bling', 'One Dance', 'In my Feelings', 'One Dance',3, "images/drake.png" ],
+  8: ["What year was YMCA realeased?", '1956', '1978', '1996', '1986', '1978',2, "images/YMCA.png" ],
+  9: ["How many members does BTS have?", '12', '7', '15','78', '7',2, "images/bts.png" ],
+  10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1, "images/ed.png" ],
+  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '21',1, "images/mozrt.png" ],
    
 }
     
 
     self.title_label = Label (parent, text= "The Music Quiz", font=("Courier", "18", "bold"))
-    self.title_label.place (x=375, y=60)
+    self.title_label.place (x=385, y=60)
     
     self.question_label = Label (parent, text = self.questions_answers[qnum][0], font=("Tw Cen MT", "9", "bold"))
     self.question_label.place(x=25,y=100)
@@ -124,6 +124,8 @@ class Questions:
     self.photo= PhotoImage(file = "BLK.png")
     self.image= Button(parent, image = self.photo)
     self.image.place(x=60, y=145)
+    self.photo.config(file=self.questions_answers[qnum][7])
+    
 
 
 
