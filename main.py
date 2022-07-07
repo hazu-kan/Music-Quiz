@@ -166,7 +166,7 @@ class Questions:
         self.endScreen()
     else:
       if choice==0:#if the user does not select an  option
-        self.answer_label.config(text="Please select a given option.") #error message 
+        messagebox.showerror('error', "please select an option") #error message 
         choice=self.var1.get() 
       else: #if the choice is made
         if choice==self.questions_answers[qnum][6]: #if choice made is correct
@@ -177,7 +177,7 @@ class Questions:
           self.questions_setup() #run method to next question
         else: #if choice is incorrect
           score+=0
-          score_label.configure(text="The correct answer was " + self.questions_answers[qnum][5])
+          messagebox.showinfo("correct answer","The correct answer was " + self.questions_answers[qnum][5])
           self.confirm_button.configure(text="Confirm")
           self.questions_setup() #move to next question
           
@@ -219,7 +219,7 @@ class Questions:
       return_string +="{} - {}\n".format(top[i][0], top[i][1])
     print(return_string) #for testing to show on the console
     open_endscrn=leaderboard(root)
-    open_endscrn.exit_button.config(text=return_string)   
+    open_endscrn.leader_button.config(text=return_string)   
    
 
 
@@ -239,14 +239,18 @@ class leaderboard:
     self.end_frame = Frame (self.end_box, width=1000, height=1000, bg=background)
     self.end_frame.grid(row=0)
 
-    self.end_heading = Label (self.end_frame, text='Well Done', font=('Tw Cen MT', 22 , 'bold'), bg=background, pady=15)
+    self.end_heading = Label (self.end_frame, text='Well Done', font=('Tw Cen MT', 22 , 'bold'), bg=background, pady=10)
     self.end_heading.grid(row=0)
 
-    self.exit_button = Button (self.end_frame, text="Exit", width=10, bg="Red", font=('Tw Cen MT', 12 , 'bold'), command=self.close_end )
-    self.exit_button.grid(row=4, pady=20)
+    self.leader_button = Button (self.end_frame, text="Exit", width=10, bg="#07989d", font=('Tw Cen MT', 12 , 'bold'), fg="white"  )
+    self.leader_button.grid(row=4, pady=10)
     
     self.restart_button = Button (self.end_frame, text="Restart", width=10, bg="Green", font=('Tw Cen MT', 12 , 'bold'), command=self.restart )
-    self.restart_button.grid(row=4, pady=30)
+    self.restart_button.grid(row=8, pady=10)
+
+    self.exit = Button (self.end_frame, text="Exit", width=10, bg="Red", font=('Tw Cen MT', 12 , 'bold'), command=self.close_end )
+    self.exit.grid(row=7, pady=10)
+
 
   def close_end(self):
     self.end_box.destroy()
