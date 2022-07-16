@@ -26,8 +26,8 @@ class UserEnterQuiz:
       self.heading_label.place(x=150,y=150)
       
         #label for username
-      self.user_label=Label (parent, text="Enter Username Here:", font=("Helvetica","15" ))
-      self.user_label.place(x=200,y=270)
+      self.username_label=Label (parent, text="Enter Username Here:", font=("Helvetica","15" ))
+      self.username_label.place(x=200,y=270)
         
         #entry box
       self.entry_box=Entry (parent, font=("Times 20 italic bold","20"))
@@ -53,7 +53,7 @@ class UserEnterQuiz:
     name=self.entry_box.get()
     names.append(name) #add name to names list declared at the beginning
     self.heading_label.destroy()
-    self.user_label.destroy()
+    self.username_label.destroy()
     self.entry_box.destroy()
     self.play_button.destroy()
     Questions(root)
@@ -71,7 +71,7 @@ class Questions:
 
     self.questions_answers =  {
   1: ["How many studio albums have the k-pop group blackpink  released?", '4', '8', '2', '732', '2', 3, "images/BLK.png" ],
-  2: ["What is the Weeknd's 4rd album?", 'Kissland', 'My Dear melonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4, "images/we.png" ],
+  2: ["What is the Weeknd's 4th album?", 'Kissland', 'My Dear melonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4, "images/we.png" ],
   3: ["Who starrred in the music video Out of Time by the Weeknd?", 'HoYeon Jung', 'Lee Jung-jae', 'Jeffrey Su', 'Anupam Tripathi', 'HoYeon Jung',1, "images/out.png" ],
   4: ["How many strings on a violin?", '3', '-17', '0', '4', '4',4, "images/v.png" ],
   5: ["Which show made One Direction?", 'The Voice ', 'X Factor', 'Americas Got Talents', 'American Idol', 'X Factor',2, "images/od.png" ],
@@ -138,14 +138,13 @@ class Questions:
 
   def questions_setup(self):
     scrambler()
-    self.var1.set(0)
+    self.var1.set(0)#configs the buttons and titles to fit the new question
     self.question_label.config(text=self.questions_answers[qnum][0])
     self.rb1.config(text=self.questions_answers[qnum][1])
     self.rb2.config(text=self.questions_answers[qnum][2])
     self.rb3.config(text=self.questions_answers[qnum][3])
     self.rb4.config(text=self.questions_answers[qnum][4]) 
-    self.photo.config(file=self.questions_answers[qnum][7])
-
+    self.photo.config(file=self.questions_answers[qnum][7])#the image button is configed 
     
   def test_progress(self):
     global score 
