@@ -22,19 +22,19 @@ def scrambler():
 
 class UserEnterQuiz:
   def __init__(self, parent):
-      self.heading_label = Label (parent, text = "THE MUSIC QUIZ", font=("Helvetica", "35", "bold"))
-      self.heading_label.place(x=150,y=150)
+      self.heading= Label (parent, text = "THE MUSIC QUIZ", font=("Helvetica", "35", "bold"), bg="#07989d", fg="white")
+      self.heading.place(x=140,y=150)
       
         #label for username
-      self.username_label=Label (parent, text="Enter Username Here:", font=("Helvetica","15" ))
-      self.username_label.place(x=200,y=270)
+      self.username_label=Label (parent, text="Enter Username Here:", font=("Helvetica","15" ), bg="#07989d", fg="white")
+      self.username_label.place(x=235,y=270)
         
         #entry box
       self.entry_box=Entry (parent, font=("Times 20 italic bold","20"))
       self.entry_box.place(x=175,y=305) 
         
          #continue button
-      self.play_button = Button (parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="light blue", command=self.name_check)  
+      self.play_button = Button (parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="#07989d", command=self.name_check, fg="white")  
       self.play_button.place(x=208,y=365)
 
       
@@ -52,7 +52,7 @@ class UserEnterQuiz:
   def name_collection(self):  
     name=self.entry_box.get()
     names.append(name) #add name to names list declared at the beginning
-    self.heading_label.destroy()
+    self.heading.destroy()
     self.username_label.destroy()
     self.entry_box.destroy()
     self.play_button.destroy()
@@ -68,7 +68,7 @@ class Questions:
     scrambler()
 
 
-
+#questions storage, tells the quiz about question, image and options 
     self.questions_answers =  {
   1: ["How many studio albums have the k-pop group blackpink  released?", '4', '8', '2', '732', '2', 3, "images/BLK.png" ],
   2: ["What is the Weeknd's 4th album?", 'Kissland', 'My Dear melonchy', 'Dawn FM', 'Beauty behind the madness', 'After Hours',4, "images/we.png" ],
@@ -80,39 +80,39 @@ class Questions:
   8: ["What year was YMCA realeased?", '1956', '1978', '1996', '1986', '1978',2, "images/YMCA.png" ],
   9: ["How many members does BTS have?", '12', '7', '15','78', '7',2, "images/bts.png" ],
   10: ["Which mathematical symbol was the title of Ed Sheeran’s first album in 2011?", '+', '-', 'x','=', '+',1, "images/ed.png" ],
-  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '21',1, "images/mozrt.png" ],
+  11: ["How old was Mozart when he wrote his first piece?", '5', '17', '15','25', '5',1, "images/mozrt.png" ],
    
 }
     
-
-    self.title_label = Label (parent, text= "The Music Quiz", font=("Courier", "18", "bold"))
+#the buttons and labels for the question screen
+    self.title_label = Label (parent, text= "The Music Quiz", font=("Courier", "18", "bold"), bg="#07989d", fg="white")
     self.title_label.place (x=385, y=60)
     
-    self.question_label = Label (parent, text = self.questions_answers[qnum][0], font=("Tw Cen MT", "9", "bold"))
+    self.question_label = Label (parent, text = self.questions_answers[qnum][0], font=("Tw Cen MT", "10", "bold"),bg="#07989d", fg="white")
     self.question_label.place(x=25,y=100)
 
     self.var1=IntVar()
  
-    self.rb1= Radiobutton(parent, text=self.questions_answers[qnum][1], font=("Courier","9"),value=1,padx=10,pady=10,
+    self.op1= Radiobutton(parent, text=self.questions_answers[qnum][1], font=("Courier","9"),value=1,padx=10,pady=10,
                 variable=self.var1)
-    self.rb1.place(x=450,y=160)
+    self.op1.place(x=450,y=160)
      
-    self.rb2= Radiobutton(parent, text=self.questions_answers[qnum][2], font=("Courier","9"),value=2,padx=10,pady=10,
+    self.op2= Radiobutton(parent, text=self.questions_answers[qnum][2], font=("Courier","9"),value=2,padx=10,pady=10,
                 variable=self.var1)
-    self.rb2.place(x=450,y=210)
+    self.op2.place(x=450,y=210)
 
-    self.rb3= Radiobutton(parent, text=self.questions_answers[qnum][3], font=("Courier","9"), value=3,padx=10,pady=10,
+    self.op3= Radiobutton(parent, text=self.questions_answers[qnum][3], font=("Courier","9"), value=3,padx=10,pady=10,
                 variable=self.var1)
-    self.rb3.place(x=450,y=260)
+    self.op3.place(x=450,y=260)
 
-    self.rb4= Radiobutton(parent, text=self.questions_answers[qnum][4], font=("Courier","9"), value=4,padx=10,pady=10,
+    self.op4= Radiobutton(parent, text=self.questions_answers[qnum][4], font=("Courier","9"), value=4,padx=10,pady=10,
                 variable=self.var1)
-    self.rb4.place(x=450,y=310)
+    self.op4.place(x=450,y=310)
 
-    self.confirm_button = Button(parent, text="Confirm", font=("Courier","11"), fg="white", bg="#07989d", command=self.test_progress)
-    self.confirm_button.place(x=500,y=410)   
+    self.confirm_button = Button(parent, text="Confirm", font=("Courier","17"), fg="white", bg="#07989d", command=self.tester)
+    self.confirm_button.place(x=490,y=400)   
       
-    self.score_label=Label(parent, text="Score", font=("Helvetica", "15"))
+    self.score_label=Label(parent, text="Score", font=("Helvetica", "15"), bg="#07989d", fg="white")
     self.score_label.place(x=300,y=10)
 
     self.answer_label=Label(parent, font=("Courier", "10", ), fg="white", bg="#07989d")
@@ -121,10 +121,10 @@ class Questions:
     self.quit= Button(parent, text="Quit", font=("Courier", "15"), fg="white", bg="red",   command=self.endScreen)
     self.quit.place(x=20,y=410)
 
-    self.photo= PhotoImage(file = "BLK.png")
+    self.photo= PhotoImage(file = "BLK.png") #place holder image 
     self.image= Button(parent, image = self.photo)
     self.image.place(x=60, y=145)
-    self.photo.config(file=self.questions_answers[qnum][7])
+    self.photo.config(file=self.questions_answers[qnum][7])#sets the correct image for the first question
     
 
 
@@ -140,13 +140,13 @@ class Questions:
     scrambler()
     self.var1.set(0)#configs the buttons and titles to fit the new question
     self.question_label.config(text=self.questions_answers[qnum][0])
-    self.rb1.config(text=self.questions_answers[qnum][1])
-    self.rb2.config(text=self.questions_answers[qnum][2])
-    self.rb3.config(text=self.questions_answers[qnum][3])
-    self.rb4.config(text=self.questions_answers[qnum][4]) 
+    self.op1.config(text=self.questions_answers[qnum][1])
+    self.op2.config(text=self.questions_answers[qnum][2])
+    self.op3.config(text=self.questions_answers[qnum][3])
+    self.op4.config(text=self.questions_answers[qnum][4]) 
     self.photo.config(file=self.questions_answers[qnum][7])#the image button is configed 
     
-  def test_progress(self):
+  def tester(self):
     global score 
     scr_label = self.score_label 
     score_label = self.answer_label
@@ -176,21 +176,22 @@ class Questions:
           self.questions_setup() #run method to next question
         else: #if choice is incorrect
           score+=0
-          messagebox.showinfo("correct answer","The correct answer was " + self.questions_answers[qnum][5])
+          messagebox.showinfo("Oh no","The correct answer was " + self.questions_answers[qnum][5])
           self.confirm_button.configure(text="Confirm")
           self.questions_setup() #move to next question
           
-  def endScreen(self):   
+  def endScreen(self): 
+    #destroys the labels and buttons to open the leaderboard window
     self.title_label.destroy()
     self.question_label.destroy()
     self.confirm_button.destroy()
     self.score_label.destroy()
     self.answer_label.destroy()
     self.quit.destroy()
-    self.rb1.destroy()
-    self.rb2.destroy()
-    self.rb3.destroy()
-    self.rb4.destroy()
+    self.op1.destroy()
+    self.op2.destroy()
+    self.op3.destroy()
+    self.op4.destroy()
     self.image.destroy()
     name=names[0]
     file=open("board.txt","a") #opens the highscores file
@@ -232,10 +233,10 @@ scrambler()
 class leaderboard:
   def __init__(self, parent):
     background="light blue"
-    self.end_box= Toplevel(root)
-    self.end_box.title("leaderBoared")
+    self.end_window= Toplevel(root)
+    self.end_window.title("leaderBoared")
 
-    self.end_frame = Frame (self.end_box, width=1000, height=1000, bg=background)
+    self.end_frame = Frame (self.end_window, width=1000, height=1000, bg=background)
     self.end_frame.grid(row=0)
 
     self.end_heading = Label (self.end_frame, text='Well Done', font=('Tw Cen MT', 22 , 'bold'), bg=background, pady=10)
@@ -252,12 +253,12 @@ class leaderboard:
 
 
   def close_end(self):
-    self.end_box.destroy()
-    root.withdraw()
+    self.end_box.destroy()#destroys the window 
+    root.withdraw()#minimizes 
 
   def restart(self):
     python = sys.executable
-    os.execl(python, python, * sys.argv)
+    os.execl(python, python, * sys.argv)#restarts the quiz using the OS
 
 
 
