@@ -230,7 +230,7 @@ scrambler()
 
 
 
-class leaderboard:
+class Leaderboard:
   def __init__(self, parent):
     background="light blue"
     self.end_window= Toplevel(root)
