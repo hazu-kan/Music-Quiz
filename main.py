@@ -10,7 +10,7 @@ asked = []
 score=0
 
 
-
+#random question selector 
 def scrambler(): 
    global qnum
    qnum = random.randint(1,11) 
@@ -19,7 +19,7 @@ def scrambler():
    elif qnum in asked:
       scrambler()
 
-
+#Starting page
 class UserEnterQuiz:
   def __init__(self, parent):
       self.heading= Label (parent, text = "THE MUSIC QUIZ", font=("Helvetica", "35", "bold"), bg="#07989d", fg="white")
@@ -37,7 +37,7 @@ class UserEnterQuiz:
       self.play_button = Button (parent, text="CONTINUE", font=("Helvetica", "35", "bold",), bg="#07989d", command=self.name_check, fg="white")  
       self.play_button.place(x=208,y=365)
 
-      
+     #checks if there is a name entered 
   def name_check(self):
     entry = self.entry_box.get()
     if entry == "":
@@ -48,7 +48,7 @@ class UserEnterQuiz:
   
     
 
-
+#store names and moves quiz on 
   def name_collection(self):  
     name=self.entry_box.get()
     names.append(name) #add name to names list declared at the beginning
@@ -63,7 +63,7 @@ class UserEnterQuiz:
       
       #add name to names list declared at the beginning
         #self.quiz_frame.destroy() #Destroy name frame then open the quiz runner
-class Questions:  
+class Questions:  #questions display page 
   def __init__(self, parent):
     scrambler()
 
@@ -145,7 +145,7 @@ class Questions:
     self.op3.config(text=self.questions_answers[qnum][3])
     self.op4.config(text=self.questions_answers[qnum][4]) 
     self.photo.config(file=self.questions_answers[qnum][7])#the image button is configed 
-    
+    #quiz progression tester 
   def tester(self):
     global score 
     scr_label = self.score_label 
@@ -218,7 +218,7 @@ class Questions:
     for i in range(len(top)):
       return_string +="{} - {}\n".format(top[i][0], top[i][1])
     print(return_string) #for testing to show on the console
-    open_endscrn=leaderboard(root)
+    open_endscrn=Leaderboard(root)
     open_endscrn.leader_button.config(text=return_string)   
    
 
@@ -229,13 +229,13 @@ scrambler()
 
 
 
-
+#leaderboard window 
 class Leaderboard:
   def __init__(self, parent):
     background="light blue"
     self.end_window= Toplevel(root)
     self.end_window.title("leaderBoared")
-
+#the parts within the window 
     self.end_frame = Frame (self.end_window, width=1000, height=1000, bg=background)
     self.end_frame.grid(row=0)
 
